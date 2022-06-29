@@ -1,0 +1,69 @@
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <div class="home-panel">
+        <div class="feature-container features">
+            <div class="feature">
+                <a mat-button class="btn" href="#/new-meeting">
+                    <mat-icon>videocam</mat-icon>
+                </a>
+                <span>New Meeting</span>
+            </div>
+            <div class="feature">
+                <a mat-button class="btn" href="#/join-meeting">
+                    <mat-icon>add_box</mat-icon>
+                </a>
+                <span>Join</span>
+            </div>
+            <div class="feature">
+                <a mat-button class="btn" href="#/schedule-meeting">
+                    <mat-icon>calendar_month</mat-icon>
+                </a>
+                <span>Schedule</span>
+            </div>
+            <div class="feature">
+                <a mat-button class="btn" href="#/meeting-list">
+                    <mat-icon>schedule</mat-icon>
+                </a>
+                <span>History</span>
+            </div>
+        </div>
+        <mat-card class="feature-container upcoming-meeting">
+            <div class="dt-holder">
+                <h3>01 : 23 : 43</h3>
+                <p>01 May 2022</p>
+            </div>
+            <div class="appointment-suggestion" *ngIf="noMeeting;else meeting">
+                <p class="no-meeting">No upcoming meetings today</p>
+            </div>
+            <ng-template #meeting>
+                <div class="appointment-suggestion">
+                    <div class="meeting-title">
+                        <h5>Meeting title</h5>
+                        <div>
+                            <button mat-icon-button>
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <button class="btn btn-info btn-sm btn-round">Start</button>
+                        </div>
+                    </div>
+                    <div class="meeting-info">
+                        <span class="label">Start At - </span>
+                        <span class="info"> 10:11 </span>
+                        <span class="label"> On </span>
+                        <span class="info">2022/03/21</span>
+                    </div>
+                    <div class="meeting-info">
+                        <span class="label">End At - </span>
+                        <span class="info"> 10:11 </span>
+                        <span class="label"> On </span>
+                        <span class="info">2022/03/21</span>
+                    </div>
+                    <div class="meeting-info">
+                        <span class="label">Meeting ID - </span>
+                        <span class="info"> 04539289385 </span>
+                    </div>
+                </div>
+            </ng-template>
+        </mat-card>
+    </div>
+</div>

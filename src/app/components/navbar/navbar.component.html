@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="account" *ngIf="avatar; else aa;">
+                            <img src="{{avatar}}" alt="avatar" class="avatar"/>
+                            <span class="online"></span>
+                        </span>
+                        <ng-template #aa>
+                            <span class="material-icons account">account_circle<span class="online"></span></span>
+                        </ng-template>
+                        <i class="material-icons">keyboard_arrow_down</i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="javascript:void(0)">{{username}} {{lastname}}</a>
+                        <a class="dropdown-item" href="javascript:void(0)">{{email}}</a>
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button class="center-button" type="button">
+                        <mat-icon color="primary">home</mat-icon>
+                        <span>Home</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="center-button" type="button">
+                        <span style="height: 24px;">
+                            <mat-icon>notifications</mat-icon>
+                            <span class="notification">5</span>
+                        </span>
+                        <span>Invitations</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="center-button" type="button">
+                        <mat-icon>account_box</mat-icon>
+                        <span>Contacts</span>
+                    </button>
+                </li>
+                <li class="navbar-nav">
+                    <button class="center-button" type="button">
+                        <mat-icon color="secondary">schedule</mat-icon>
+                        <span>Meetings</span>
+                    </button>
+                </li>
+            </ul>
+            <div class="navbar-wrapper">
+                <a class="navbar-brand" href="javascript:void(0)">
+                    <img src="../../../assets/img/logo.png" alt="logo" class="logo"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

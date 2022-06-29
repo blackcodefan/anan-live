@@ -1,0 +1,108 @@
+<input #uploadAvatar (change)="UploadAvatar($event)" accept="image/*" type="file" hidden/>
+<div class="center-block">
+    <div class="card">
+        <div class="card-body" *ngIf="step == 0">
+            <h4 class="card-title text-center font-weight-bold mt-2 mb-2">Enter Phone Number</h4>
+            <form #f="ngForm" [formGroup]="phoneForm">
+                <ngx-intl-tel-input
+                        [cssClass]="'custom'"
+                        [preferredCountries]="preferredCountries"
+                        [enableAutoCountrySelect]="true"
+                        [enablePlaceholder]="true"
+                        [searchCountryFlag]="true"
+                        [searchCountryField]="[
+                            SearchCountryField.Iso2,
+                            SearchCountryField.Name
+                        ]"
+                        [selectFirstCountry]="false"
+                        [selectedCountryISO]="CountryISO.SaudiArabia"
+                        [maxLength]="15"
+                        [phoneValidation]="true"
+                        [separateDialCode]="separateDialCode"
+                        [numberFormat]="PhoneNumberFormat.International"
+                        name="phone"
+                        formControlName="phone"
+                >
+                </ngx-intl-tel-input>
+            </form>
+            <div class="mt-2">
+                <button
+                        (click)="onCodeSend($event)"
+                        mat-raised-button
+                        color="primary"
+                        [class.button-spinner]="loading"
+                        [disabled]="!this.phoneForm.valid||loading"
+                        type="button"
+                        class="btn btn-info btn-block">
+                    Submit
+                </button>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="step == 1">
+            <h4 class="card-title text-center font-weight-bold mt-2 mb-2">Enter the PIN</h4>
+            <form>
+                <ng-otp-input  [formCtrl]="pinFormControl"  [config]="{length:6}"></ng-otp-input>
+            </form>
+            <div class="mt-2">
+                <button
+                        (click)="onConfirm()"
+                        mat-raised-button
+                        [class.button-spinner]="loading"
+                        [disabled]="!this.pinFormControl.valid||loading"
+                        type="button"
+                        class="btn btn-info btn-block">
+                    Submit
+                </button>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="step == 2">
+            <h4 class="card-title text-center font-weight-bold mt-2 mb-2">Enter your Info</h4>
+            <div class="card-avatar">
+                <ng-container *ngIf="avatarImg==undefined;else avatar">
+                    <img class="img" src="./assets/img/logo.png" width="80" height="80" (click)="uploadAvatar.click()"/>
+                </ng-container>
+                <ng-template #avatar>
+                    <img class="img" [src]="avatarImg" width="80" height="80"/>
+                </ng-template>
+            </div>
+            <form>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>First Name</mat-label>
+                    <input type="text" matInput [formControl]="nameFormControl" placeholder="John">
+                    <mat-error *ngIf="nameFormControl.hasError('required')">
+                        First name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput [formControl]="lastNameFormControl" placeholder="Doe">
+                    <mat-error *ngIf="lastNameFormControl.hasError('required')">
+                        Last name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+            <div class="mt-2">
+                <button
+                        (click)="addInfo()"
+                        mat-raised-button
+                        [class.button-spinner]="loading"
+                        [disabled]="!(this.emailFormControl.valid && this.nameFormControl.valid)||loading"
+                        type="button"
+                        class="btn btn-info btn-block">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="recaptcha-container"></div>

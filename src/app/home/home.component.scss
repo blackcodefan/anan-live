@@ -1,0 +1,113 @@
+.wrapper {
+  height: 100vh;
+}
+.home-panel{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  @media (max-width: 996px) {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+.feature-container{
+  width: 300px;
+  height: 300px;
+  @media (max-width: 967px) {
+    width: 250px;
+    height: 250px;
+  }
+}
+.features{
+  display: grid;
+  grid-template: 1fr 1fr/1fr 1fr;
+  .feature{
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+
+    button, a{
+      background-color: #11A9A1;
+      width: 100px;
+      height: 100px;
+      border-radius: 20px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @media (max-width: 967px){
+        width: 70px;
+        height: 70px;
+      }
+
+      mat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+      }
+    }
+    span{
+      font-size: 13px;
+    }
+  }
+}
+.upcoming-meeting{
+  border-radius: 30px;
+  background-size: cover;
+  padding: 0;
+  background-position: 80% 80%;
+  background-image: url("../../assets/img/calendar.png");
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  .dt-holder{
+    text-align: center;
+    color: white;
+  }
+  .appointment-suggestion{
+    height: 180px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 30px 30px;
+    width: 100%;
+    padding: 15px;
+    .no-meeting {
+      font-size: 14px;
+    }
+    .meeting-title{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      h5{
+        margin: 0;
+      }
+    }
+    .meeting-info{
+      width: 100%;
+      .label {
+        color: #a1a1a1;
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .info {
+        font-size: 14px;
+        color: #00BCD4;
+        font-weight: bold;
+      }
+    }
+  }
+}
